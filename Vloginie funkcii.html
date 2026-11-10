@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script> // 242
+        'use strict';
+        {
+        test(
+        	function() {return 1;},
+        	function() {return 2;},
+        	function() {return 3;}
+        );
+
+        function test(func1, func2, func3) {
+        	console.log( func1() + func2() + func3() );
+        }
+        }
+    </script>
+
+    <script> // 243 (1)
+        'use strict';
+        {
+        function test(func1, func2, func3) {
+        	return func1() + func2() + func3();
+        }
+        }
+    </script>
+
+    <script> // 243 (2)
+        'use strict';
+        {
+        function func1() {
+        	return 1;
+        }
+        function func2() {
+        	return 2;
+        }
+        function func3() {
+        	return 3;
+        }
+
+        function test(func1, func2, func3) {
+        	return func1() + func2() + func3();
+        }
+
+        console.log( test(func1, func2, func3) );
+        }
+    </script>
+
+    <script> // 243 (3)
+        'use strict';
+        {
+        let func1 = function() {
+        	return 1;
+        };
+        let func2 = function() {
+        	return 2;
+        };
+        let func3 = function() {
+        	return 3;
+        };
+
+        function test(func1, func2, func3) {
+        	return func1() + func2() + func3();
+        }
+
+        console.log( test(func1, func2, func3) );
+        }
+    </script>
+
+    <script> // 244 (1)
+        'use strict';
+        {
+        function test(func) {
+        	console.log( func(3) );
+        }
+
+        test(function(num) {
+        	return num * num * num;
+        });
+        }
+    </script>
+
+    <script> // 244 (2)
+        'use strict';
+        {
+        function func(num) {
+        	return num * num * num;
+        }
+
+        function test(func) {
+        	console.log( func(3) );
+        }
+
+        test(func);
+        }
+    </script>
+
+    <script> // 244 (3)
+        'use strict';
+        {
+        let func = function(num) {
+        	return num * num * num;
+        };
+
+        function test(func) {
+        	console.log( func(3) );
+        }
+
+        test(func);
+        }
+    </script>
+
+    <script> // 244 (4)
+        'use strict';
+        {
+        let func = function(num1, num2) {
+        	return num1 + num2;
+        };
+
+        function test(func) {
+        	alert( func(2, 3) );
+        }
+
+        test(func);
+        }
+    </script>
+
+    <script> // 245
+        'use strict';
+        {
+        function test(num, func1, func2) {
+        	return func1(num) + func2(num);
+        }
+
+        console.log( test(3, function(num) {
+        	return num * num;
+        }, function(num) {
+        	return num * num * num;
+        }) );
+        }
+    </script>
+
+    <script> // 246 (1)
+        'use strict';
+        {
+        function test(arr, func) {
+        	for (let i = 0; i < arr.length; i++) {
+        		arr[i] = func(arr[i]);
+        	}
+
+        	return arr;
+        }
+        }
+    </script>
+
+    <script> // 246 (2)
+        'use strict';
+        {
+        function test(arr, func) {
+        	for (let i = 0; i < arr.length; i++) {
+        		arr[i] = func(arr[i]);
+        	}
+
+        	return arr;
+        }
+
+        let result = test([1, 2, 3], function(num) {
+        	return num * num * num;
+        });
+
+        console.log(result);
+        }
+    </script>
+
+    <script> // 247
+        'use strict';
+        {
+        function func(num1, num2) {
+        	function square(num) {
+        		return num * num;
+        	}
+
+        	function cube(num) {
+        		return num * num * num;
+        	}
+
+        	return square(num1) + cube(num2);
+        }
+
+        console.log( func(2, 3) );
+        }
+    </script>
+
+    <script> // 248 (1)
+        'use strict';
+        {
+        function test() {
+        	let num = 1;
+
+        	function func() {
+        		console.log(num);
+        	}
+
+        	func();
+        }
+
+        test();
+        }
+    </script>
+
+    <script> // 248 (2)
+        'use strict';
+        {
+        function test() {
+        	let num = 1;
+
+        	function func() {
+        		console.log(num);
+        	}
+        }
+
+        test();
+        }
+    </script>
+
+    <script> // 248 (3)
+        'use strict';
+        {
+        function test() {
+        	let num = 1;
+
+        	function func() {
+        		console.log(num);
+        	}
+
+        	func();
+        }
+        }
+    </script>
+
+    <script> // 248 (4)
+        'use strict';
+        {
+        function test() {
+        	let num;
+
+        	function func() {
+        		console.log(num);
+        	}
+
+        	num = 1;
+        	func();
+        	num = 2;
+        	func();
+        }
+
+        test();
+        }
+    </script>
+
+    <script> // 249 (1)
+        'use strict';
+        {
+        function test(num1, num2) {
+        	function func() {
+        		console.log(num1 + num2);
+        	}
+
+        	func();
+        }
+
+        test(1, 2);
+        }
+    </script>
+
+    <script> // 249 (2)
+        'use strict';
+        {
+        function test(num1, num2) {
+        	function func() {
+        		console.log(num1 + num2);
+        	}
+
+        	num1 = 2;
+        	func();
+        }
+
+        test(1, 2);
+        }
+    </script>
+
+    <script> // 250 (1)
+        'use strict';
+        {
+        function test(num) {
+        	function func(localNum) {
+        		console.log(localNum);
+        	}
+
+        	func(num);
+        }
+
+        test(1);
+        }
+    </script>
+
+    <script> // 250 (2)
+        'use strict';
+        {
+        function test(num) {
+        	function func(localNum) {
+        		console.log(localNum);
+        	}
+
+        	func(num + 1);
+        }
+
+        test(1);
+        }
+    </script>
+
+    <script> // 250 (3)
+        'use strict';
+        {
+        function test(num) {
+        	function func(localNum) {
+        		console.log(num);
+        	}
+
+        	func(num + 1);
+        }
+
+        test(1);
+        }
+    </script>
+
+    <script> // 250 (4)
+        'use strict';
+        {
+        function test(num) {
+        	function func(localNum) {
+        		localNum = 2;
+        	}
+
+        	func(num);
+        	console.log(num);
+        }
+
+        test(1);
+        }
+    </script>
+
+    <script> // 250 (5)
+        'use strict';
+        {
+        function test(num) {
+        	function func(localNum) {
+        		localNum = 2;
+        	}
+
+        	func(num);
+        	console.log(localNum);
+        }
+
+        test(1);
+        }
+    </script>
+
+    <script> // 250 (6)
+        'use strict';
+        {
+        function test(num) {
+        	function func(localNum) {
+        		num = 2;
+        	}
+
+        	func(num);
+        	console.log(num);
+        }
+
+        test(1);
+        }
+    </script>
+
+    <script> // 251 (1)
+        'use strict';
+        {
+        function test(num) {
+        	function func(num) {
+        		console.log(num);
+        	}
+
+        	func(num);
+        }
+
+        test(1);
+        }
+    </script>
+
+    <script> // 251 (2)
+        'use strict';
+        {
+        function test(num) {
+        	function func(num) {
+        		num = 2;
+        	}
+
+        	func(num);
+        	console.log(num);
+        }
+
+        test(1);
+        }
+    </script>
+
+    <script> // 251 (3)
+        'use strict';
+        {
+        function test(num) {
+        	function func(num) {
+        		console.log(num);
+        	}
+
+        	num = 2;
+        	func(num);
+        }
+
+        test(1);
+        }
+    </script>
+
+    <script> // 251 (4)
+        'use strict';
+        {
+        function test(num) {
+        	function func(num) {
+        		console.log(num);
+        	}
+
+        	func(num);
+        	num = 2;
+        }
+
+        test(1);
+        }
+    </script>
+
+    <script> // 252
+        'use strict';
+        {
+        function func1() {
+        	return function() {
+        		return 1;
+        	};
+        }
+
+        function func2() {
+        	return function() {
+        		return 2;
+        	};
+        }
+
+        console.log( func1()() + func2()() );
+        }
+    </script>
+
+    <script> // 253
+        'use strict';
+        {
+        function func() {
+        	return function() {
+        		return function() {
+        			return function() {
+        				return function() {
+        					return '!';
+        				};
+        			};
+        		};
+        	};
+        }
+
+        console.log( func()()()()() );
+        }
+    </script>
+
+    <script> // 254 (1)
+        'use strict';
+        {
+        function func(num1) {
+        	return function(num2) {
+        		return function(num3) {
+        			return num1 + num2 + num3;
+        		};
+        	};
+        }
+
+        console.log( func(2)(3)(4) );
+        }
+    </script>
+
+    <script> // 254 (2)
+        'use strict';
+        {
+        function func(num1) {
+        	return function(num2) {
+        		return function(num3) {
+        			return function(num4) {
+        				return function() {
+        					return [num1, num2, num3, num4];
+        				};
+        			};
+        		};
+        	};
+        }
+
+        console.log( func(2)(3)(4)(5)() );
+        }
+    </script>
+
+    <script> // 255 (1)
+        'use strict';
+        {
+        function each(arr, callback) {
+        	let result = [];
+
+        	for (let elem of arr) {
+        		result.push( callback(elem) );
+        	}
+
+        	return result;
+        }
+
+        let result = each([1, 2, 3, 4, 5], function(num) {
+        	return num * 2;
+        });
+
+        console.log(result);
+        }
+    </script>
+
+    <script> // 255 (2)
+        'use strict';
+        {
+        function each(arr, callback) {
+        	let result = [];
+
+        	for (let elem of arr) {
+        		result.push( callback(elem) );
+        	}
+
+        	return result;
+        }
+
+        let result = each(['abc', 'hello', 'js'], function(str) {
+        	return str.split('').reverse().join('');
+        });
+
+        console.log(result);
+        }
+    </script>
+
+    <script> // 255 (3)
+        'use strict';
+        {
+        function each(arr, callback) {
+        	let result = [];
+
+        	for (let elem of arr) {
+        		result.push( callback(elem) );
+        	}
+
+        	return result;
+        }
+
+        let result = each(['abc', 'hello', 'js'], function(str) {
+        	return str[0].toUpperCase() + str.slice(1);
+        });
+
+        console.log(result);
+        }
+    </script>
+
+    <script> // 256
+        'use strict';
+        {
+        function each(arr, callback) {
+        	let result = [];
+
+        	for (let elem of arr) {
+        		result.push( callback(elem) );
+        	}
+
+        	return result;
+        }
+
+        function cube(num) {
+        	return num ** 3;
+        }
+
+        let result = each([1, 2, 3, 4, 5], cube);
+
+        console.log(result);
+        }
+    </script>
+
+    <script> // 258
+        'use strict';
+        {
+        function filter(arr, callback) {
+        	let res = [];
+
+        	for (let elem of arr) {
+        		if ( callback(elem) === true ) {
+        			res.push(elem);
+        		}
+        	}
+
+        	return res;
+        }
+
+        let result = filter([1, 2, 3, 4, 5], elem => elem > 0);
+
+        console.log(result);
+        }
+    </script>
+
+</body>
+</html>
