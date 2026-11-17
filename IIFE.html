@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Каррирование и IIFE</title>
+</head>
+<body>
+
+    <script>
+        //271
+        // Задача 1
+        (function() {
+            return function() {
+                return function() {
+                    console.log('!');
+                };
+            };
+        })()()();
+
+        // Задача 2
+        (function() {
+            return function(a) {
+                return function(b) {
+                    console.log(a + b);
+                };
+            };
+        })()(1)(2);
+
+        // Задача 3
+        (function() {
+            return function(a) {
+                return function(b) {
+                    return function(c) {
+                        console.log(a + b + c);
+                    };
+                };
+            };
+        })()(1)(2)(3);
+//274
+          let myCounter1 = (function() {
+            let num = 1;
+            return function() {
+                console.log(num);
+                num++;
+            };
+        })();
+
+        myCounter1();
+        myCounter1();
+        myCounter1();
+        myCounter1();
+        myCounter1();
+
+
+        let myCounter2 = (function() {
+            let num = 1;
+            return function() {
+                console.log(num);
+                if (num === 5) {
+                    num = 1;
+                } else {
+                    num++;
+                }
+            };
+        })();
+
+        myCounter2();
+        myCounter2();
+        myCounter2();
+        myCounter2();
+        myCounter2();
+        myCounter2();
+        myCounter2();
+    </script>
+
+</body>
+</html>

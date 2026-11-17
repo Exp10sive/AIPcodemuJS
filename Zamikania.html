@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Замыкания</title>
+</head>
+<body>
+
+    <script>
+        function createCounter() {
+            let count = 0;
+            return function() {
+                count++;
+                console.log(count);
+            };
+        }
+
+        function createCountdown() {
+            let num = 10;
+            return function() {
+                num--;
+                console.log(num);
+            };
+        }
+
+        function createSmartCountdown() {
+            let num = 10;
+            return function() {
+                if (num > 0) {
+                    num--;
+                    console.log(num);
+                } else {
+                    console.log("Отсчет окончен");
+                }
+            };
+        }
+
+        const counter = createCounter();
+        counter();
+        counter();
+
+        const countdown = createCountdown();
+        countdown();
+        countdown();
+
+        const smartCountdown = createSmartCountdown();
+        for (let i = 0; i < 12; i++) {
+            smartCountdown();
+        }
+    </script>
+
+</body>
+</html>
